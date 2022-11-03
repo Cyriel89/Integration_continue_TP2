@@ -18,7 +18,7 @@ pipeline {
         stage('Run') {
             steps {
                 script {        
-                    docker.image('postgres:15.0-alpine').withRun("-e POSTGRES_HOST_AUTH_METHOD=${env.POSTGRES_HOST_AUTH_METHOD} -e POSTGRES_USER=${env.POSTGRES_USER} -e POSTGRES_DB=${env.POSTGRES_DB}") { db -> 
+                    docker.image('postgres:15.0-alpine').withRun("--env POSTGRES_HOST_AUTH_METHOD=${env.POSTGRES_HOST_AUTH_METHOD} --env POSTGRES_USER=${env.POSTGRES_USER} --env POSTGRES_DB=${env.POSTGRES_DB}") { db -> 
                         docker.image('postgres:15.0-alpine').inside("--link ${db.id}:postgres") {
                             sh '''
                                 while !pg_isready -d $DATABASE_URL_TEST -U $POSTGRES_USER
