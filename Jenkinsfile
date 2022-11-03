@@ -22,7 +22,7 @@ pipeline {
                         docker.image('postgres:15.0-alpine').inside("--link ${db.id}:postgres") {
                             sh '''
                                 psql --version
-                                until psql -h ${POSTGRES_HOST} -U ${POSTGRES_USER} -c "select 1" > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
+                                until psql -U ${POSTGRES_USER} -c "select 1" > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
                                   echo "Waiting for postgres server, $((RETRIES-=1)) remaining attempts..."
                                   sleep 1
                                 done
