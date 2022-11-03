@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'maven:latest' }
-    }
+    agent any
     environment{
         DATABASE_URL_TEST='postgres://gael:@postgres:5432/qieam'
         POSTGRES_USER='gael'
@@ -10,6 +8,9 @@ pipeline {
     }
     stages {
         stage('Build') {
+            agent {
+                docker { image 'maven:latest' }
+            }
             steps {
                 sh 'mvn compile'
             }
