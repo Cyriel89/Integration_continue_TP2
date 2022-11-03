@@ -28,9 +28,8 @@ pipeline {
                                '''
                         }
                         docker.image('maven:latest').inside {
-                                sh 'mvn compile' 
-                                sh 'mvn clean test'
-                            }
+                            sh 'mvn compile' 
+                            sh 'mvn clean test'
                         }
                     }
                 }
