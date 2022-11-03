@@ -1,10 +1,17 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
     stages {
-        stage('Intégration test') {
+        stage('test Maven') {
             steps {
                 sh 'mvn test'
                 junit 'target/surefire-reports/*.xml'
+            }
+        }
+        stage('test node') {
+            steps {
+                sh 'node --version'
             }
         }
     }
