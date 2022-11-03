@@ -35,5 +35,10 @@ pipeline {
                 }
             }
         }
+        stage('build && SonarQube analysis') {
+            steps {
+                sh 'mvn verify sonar:sonar -Dsonar.qualitygate.wait=true -Dsonar.projectKey=ciproject2'
+            }
+        }
     }
 }
