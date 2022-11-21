@@ -37,7 +37,7 @@ pipeline {
         }
         stage('build && SonarQube analysis') {
             steps {
-                mvn clean verify sonar:sonar -Dsonar.projectKey=Integration-continue_TP2 -Dsonar.host.url="http://localhost:9000" -Dsonar.login="sqp_ad8a10336fe7f4fae5efbaca401fc9b9d81e6269"
+                mvn clean verify sonar:sonar -Dsonar.projectKey="Integration-continue_TP2" -Dsonar.host.url="http://localhost:9000" -Dsonar.login="sqp_ad8a10336fe7f4fae5efbaca401fc9b9d81e6269"
             }
         }
     }
